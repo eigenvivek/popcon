@@ -21,7 +21,7 @@ REQUIRED_PACKAGES = [
     "tqdm>=4.41.0",
 ]
 
-# Find popcorns version
+# Find popcorn's version
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 for line in open(os.path.join(PROJECT_PATH, "popcorns", "__init__.py")):
     if line.startswith("__version__ = "):
@@ -57,7 +57,8 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
     ],
-    packages=find_packages(),
+    packages=find_packages("popcorns"),
+    package_dir={"": "popcorns"},
     include_package_data=True,
     test_suite="tests",
 )

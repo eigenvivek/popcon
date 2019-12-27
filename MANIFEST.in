@@ -1,1 +1,1 @@
-recursive-include graspy/datasets *.csv *.npy atlas
+recursive-include popcorns/datasets *.csv *.ssv
