@@ -1,1 +1,1 @@
-recursive-include popcorns/datasets *.csv *.ssv
+recursive-include popcon/datasets *.csv *.ssv

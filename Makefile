@@ -4,7 +4,7 @@ clean:
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
 	find . -type f -name ".DS_Store" -delete
-	rm -rf build dist popcorns/popcorns.egg-info
+	rm -rf build dist popcon/popcon.egg-info
 
 source:
 	python setup.py sdist bdist_wheel

@@ -3,13 +3,13 @@ import sys
 from setuptools import setup, find_packages
 from sys import platform
 
-PACKAGE_NAME = "popcorns"
+PACKAGE_NAME = "popcon"
 DESCRIPTION = "Population-level connectome analysis in Python!"
 with open("README.md", "r") as f:
     LONG_DESCRIPTION = f.read()
 AUTHOR = ("Vivek Gopalakrishnan",)
 AUTHOR_EMAIL = "vgopala4@jhu.edu"
-URL = "https://github.com/v715/popcorns"
+URL = "https://github.com/v715/popcon"
 MINIMUM_PYTHON_VERSION = 3, 5
 REQUIRED_PACKAGES = [
     "Click>=7.0",
@@ -23,7 +23,7 @@ REQUIRED_PACKAGES = [
 
 # Find popcorn's version
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
-for line in open(os.path.join(PROJECT_PATH, "popcorns", "__init__.py")):
+for line in open(os.path.join(PROJECT_PATH, "popcon", "__init__.py")):
     if line.startswith("__version__ = "):
         VERSION = line.strip().split()[2][1:-1]
 
@@ -57,8 +57,8 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
     ],
-    packages=find_packages("popcorns"),
-    package_dir={"": "popcorns"},
+    packages=find_packages("popcon"),
+    package_dir={"": "popcon"},
     include_package_data=True,
     test_suite="tests",
 )
