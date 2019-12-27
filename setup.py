@@ -1,7 +1,6 @@
 import os
 import sys
 from setuptools import setup, find_packages
-from sys import platform
 
 PACKAGE_NAME = "popcon"
 DESCRIPTION = "Population-level connectome analysis in Python!"
@@ -12,11 +11,10 @@ AUTHOR_EMAIL = "vgopala4@jhu.edu"
 URL = "https://github.com/v715/popcon"
 MINIMUM_PYTHON_VERSION = 3, 5
 REQUIRED_PACKAGES = [
-    "Click>=7.0",
     "graspy>=0.1",
     "mgc>=0.0.1",
+    "numpy>=1.18",
     "pandas>=0.25.0",
-    "scikit-bio>=0.5.5",
     "statsmodels>=0.10.0",
     "tqdm>=4.41.0",
 ]

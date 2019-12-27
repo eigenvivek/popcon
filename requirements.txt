@@ -1,0 +1,6 @@
+graspy>=0.1
+mgc>=0.0.1
+numpy>=1.18
+pandas>=0.25.0
+statsmodels>=0.10.0
+tqdm>=4.41.0
