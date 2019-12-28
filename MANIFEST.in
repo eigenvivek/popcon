@@ -1,1 +1,6 @@
+include pyproject.toml
+include *.md
+include LICENSE.txt
+include requirements.txt
+
 recursive-include popcon/datasets *.csv *.ssv
