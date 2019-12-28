@@ -1,7 +1,6 @@
-from joblib import Parallel, delayed
-
 import numpy as np
 import pandas as pd
+from joblib import Parallel, delayed
 from scipy import stats
 
 from ..utils import check_multigraphs
