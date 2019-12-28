@@ -1,3 +1,5 @@
+from joblib import Parallel, delayed
+
 import pandas as pd
 from graspy.embed import OmnibusEmbed
 from scipy.spatial.distance import pdist, squareform
@@ -18,7 +20,7 @@ def _test(embedding, labels, vertex, permutations):
 
     # Calculate p-value
     result = permanova(dissimilarity, labels, permutations=permutations)
-    return result["p-value"]
+    return (vertex, result["p-value"])
 
 
 def manova(multigraph, labels, permutations=1e4):
@@ -30,11 +32,11 @@ def manova(multigraph, labels, permutations=1e4):
     omni = OmnibusEmbed()
     embedding = omni.fit_transform(multigraph)
 
-    # Calculate p-value for each vertex
-    pvals = []
-    for vertex in tqdm(range(n_vertices)):
-        pvalue = _test(embedding, labels, vertex, int(permutations))
-        pvals.append([vertex, pvalue])
+    # Calculate p-values for each vertex
+    pvals = Parallel(n_jobs=-1)(
+        delayed(_test)(embedding, labels, vertex, permutations)
+        for vertex in range(n_vertices)
+    )
 
     # Construct dataframe of results
     columns = ["vertex", "p-value"]

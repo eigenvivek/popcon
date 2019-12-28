@@ -1,7 +1,8 @@
+from joblib import Parallel, delayed
+
 import numpy as np
 import pandas as pd
 from scipy import stats
-from tqdm import tqdm
 
 from ..utils import check_multigraphs
 
@@ -16,9 +17,9 @@ def _test(i, j, *multigraphs):
     # are equal. For example, stats.kruskal([0],[0]) throws such an error.
     try:
         _, pvalue = stats.kruskal(*samples)
-        return pvalue
+        return (i, j, pvalue)
     except ValueError:
-        return 1
+        return (i, j, 1)
 
 
 def kruskal(*multigraphs):
@@ -29,10 +30,12 @@ def kruskal(*multigraphs):
     Parameters
     ----------
     *multigraphs : list of multigraphs
+        Separate populations to be tested against each other
 
     Returns
     -------
     pvals : pd.DataFrame
+        Dataframe of the p-value for each edge
     """
 
     # Make iterator for traversing the upper triangle of the connectome
@@ -41,10 +44,9 @@ def kruskal(*multigraphs):
     indices = zip(*np.triu_indices(n_vertices, 1))
 
     # Calculate p-values for each edge
-    pvals = []
-    for (i, j) in tqdm(indices):
-        pvalue = _test(i, j, *multigraphs)
-        pvals.append([i, j, pvalue])
+    pvals = Parallel(n_jobs=-1)(
+        delayed(_test)(i, j, *multigraphs) for (i, j) in indices
+    )
 
     # Construct dataframe of results
     columns = ["i", "j", "p-value"]
