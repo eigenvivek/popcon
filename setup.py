@@ -1,6 +1,6 @@
 import os
 import sys
-from setuptools import setup
+from setuptools import setup, find_packages
 
 PACKAGE_NAME = "popcon"
 DESCRIPTION = "Population-level connectome analysis in Python!"
@@ -55,7 +55,7 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
     ],
-    packages=["popcon"],
+    packages=find_packages(),
     include_package_data=True,
     test_suite="tests",
 )
