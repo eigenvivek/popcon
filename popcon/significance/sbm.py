@@ -1,5 +1,6 @@
 from collections import namedtuple
 
+import numpy as np
 from mgc.ksample import KSample
 
 Point = namedtuple("Point", ["x", "y"])
@@ -13,7 +14,7 @@ def _get_counts(graphs, point_1, point_2):
         block = graph[point_1.x : point_2.x, point_1.y : point_2.y]
         X.append(block.flatten())
 
-    return X
+    return np.array(X)
 
 
 def test_block(blocks, expr_1, expr_2, indep_test, *samples, **mgc_kwargs):
