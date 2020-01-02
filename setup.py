@@ -55,8 +55,7 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
     ],
-    packages=find_packages("popcon"),
-    package_dir={"": "popcon"},
+    packages=find_packages(exclude=["tests"]),
     include_package_data=True,
     test_suite="tests",
 )
