@@ -7,6 +7,9 @@ Point = namedtuple("Point", ["x", "y"])
 
 
 def _get_counts(graphs, point_1, point_2):
+    """
+    Fetch all edgeweights in a rectangular subsection of the connectome.
+    """
 
     X = []
 
