@@ -1,6 +1,5 @@
 from os.path import abspath, dirname, join
 
-import numpy as np
 import pandas as pd
 from sklearn.utils import Bunch
 
@@ -50,11 +49,8 @@ def load_mice():
 
     # Read the atlas
     atlas = pd.read_csv(join(data_path, "atlas.csv"))
-    inner_hier_labels = atlas["Macrostructure"].tolist() * 2
-    outer_hier_labels = np.array(166 * ["Right"] + 166 * ["Left"])
 
-    return Bunch(
-        multigraph=multigraph,
-        structures=inner_hier_labels,
-        hemisphere=outer_hier_labels,
-    )
+    # Read the sbm block structures
+    blocks = pd.read_csv(join(data_path, "blocks.csv"))
+
+    return Bunch(multigraph=multigraph, atlas=atlas, blocks=blocks,)
