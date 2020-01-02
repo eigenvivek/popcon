@@ -36,5 +36,5 @@ class Multigraph:
         """
         sub_df = self.df.query(expr)
         slices = sub_df["slice"]
-        graphs = [self.graphs[i] for i in slices]
+        graphs = [self.graphs[int(i)] for i in slices]
         return sub_df, graphs
