@@ -20,7 +20,7 @@ def _get_counts(graphs, point_1, point_2):
     return np.array(X)
 
 
-def test_block(blocks, expr_1, expr_2, indep_test, *samples, **mgc_kwargs):
+def test_block(blocks, expr_1, expr_2, indep_test, samples, mgc_kwargs):
     """
     Test block connectivity in an SBM using MGC.
 
@@ -34,9 +34,9 @@ def test_block(blocks, expr_1, expr_2, indep_test, *samples, **mgc_kwargs):
         Expression to subset the second block from `blocks`
     indep_test : {"CCA", "Dcorr", "HHG", "RV", "Hsic", "MGC", "DcorrRF", "HsicRF", "MGCRF"}
         A string corresponding to the desired independence test from `mgc.independence`.
-    *samples : np.ndarray
+    samples : list of np.ndarray
         Matrices with vectorized edgeweights from the input block
-    mgc_kwars : dict
+    mgc_kwargs : dict
         Dictionary of keyword arguments to `KSample.test`
 
     Returns
@@ -50,6 +50,8 @@ def test_block(blocks, expr_1, expr_2, indep_test, *samples, **mgc_kwargs):
     point_1 = Point(*blocks.query(expr_1).values[0][2:])
     point_2 = Point(*blocks.query(expr_2).values[0][2:])
     counts = [_get_counts(sample, point_1, point_2) for sample in samples]
+
+    print(mgc_kwargs)
 
     stat, pvalue = KSample(indep_test).test(*counts, **mgc_kwargs)
     return stat, pvalue
