@@ -10,10 +10,10 @@ def test_mice():
 
     # Split population by genotype
     _, btbr = mice.multigraph.query("genotype == 'BTBR'")
-    _, c57 = mice.multigraph.query("genotype == 'C57'")
+    _, b6 = mice.multigraph.query("genotype == 'B6'")
     _, cast = mice.multigraph.query("genotype == 'CAST'")
-    _, db2 = mice.multigraph.query("genotype == 'DB2'")
+    _, dba2 = mice.multigraph.query("genotype == 'DBA2'")
 
     assert mice.multigraph.df.shape == (32, 3)
     assert mice.blocks.shape == (14, 4)
-    assert len(btbr) == len(c57) == len(cast) == len(db2) == 8
+    assert len(btbr) == len(b6) == len(cast) == len(dba2) == 8
