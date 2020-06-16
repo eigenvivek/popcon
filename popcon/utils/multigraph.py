@@ -15,7 +15,7 @@ class Multigraph:
     """
 
     def __init__(self, participants, graphs):
-        self.df = participants
+        self.participants = participants
         self.graphs = graphs
 
     def query(self, expr):
@@ -34,7 +34,7 @@ class Multigraph:
         graphs : np.ndarray
             Subset of graphs corresponding to subjects in `sub_df`
         """
-        sub_df = self.df.query(expr)
+        sub_df = self.participants.query(expr)
         slices = sub_df["slice"]
         graphs = [self.graphs[int(i)] for i in slices]
         return sub_df, graphs
