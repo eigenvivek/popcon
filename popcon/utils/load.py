@@ -39,7 +39,7 @@ def load_edgelists(graph_path, participants, sample_size, n_vertices, extension)
         if not fl.endswith(extension):
             continue
 
-        subid = fl.split("_")[0]
+        subid = fl.split("_")[0].split("-")[-1]
         idx = participants.index[participants["participant_id"] == subid]
 
         with open(join(graph_path, fl), "rb") as edgelist:
