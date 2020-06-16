@@ -35,7 +35,10 @@ def _load_dataset(data_path, extension):
     # Read the graphs
     sample_size = int(param_dict["sample_size"])
     n_vertices = int(param_dict["n_vertices"])
-    graphs = load_edgelists(data_path, participants, sample_size, n_vertices, extension)
+    graph_path = join(data_path, "graphs")
+    graphs = load_edgelists(
+        graph_path, participants, sample_size, n_vertices, extension
+    )
 
     return Multigraph(participants, graphs)
 
