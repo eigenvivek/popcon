@@ -14,6 +14,7 @@ def test_mice():
     _, cast = mice.multigraph.query("genotype == 'CAST'")
     _, dba2 = mice.multigraph.query("genotype == 'DBA2'")
 
-    assert mice.multigraph.df.shape == (32, 3)
+    assert mice.multigraph.participants.shape == (32, 3)
+    assert mice.metrics.shape == (32 * 333, 11)
     assert mice.blocks.shape == (14, 4)
     assert len(btbr) == len(b6) == len(cast) == len(dba2) == 8

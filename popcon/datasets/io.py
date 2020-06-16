@@ -3,7 +3,7 @@ from os.path import abspath, dirname, join
 import pandas as pd
 from sklearn.utils import Bunch
 
-from ..utils import Multigraph, parse_participants, load_edgelists
+from ..utils import Multigraph, load_edgelists, load_metrics, parse_participants
 
 
 def _get_datapath(path):
@@ -50,10 +50,14 @@ def load_mice():
     data_path = _get_datapath(path="duke")
     multigraph = _load_dataset(data_path, extension="ssv")
 
+    # Read metrics
+    metrics_path = join(data_path, "metrics")
+    metrics = load_metrics(metrics_path)
+
     # Read the atlas
     atlas = pd.read_csv(join(data_path, "atlas.csv"))
 
     # Read the sbm block structures
     blocks = pd.read_csv(join(data_path, "blocks.csv"))
 
-    return Bunch(multigraph=multigraph, atlas=atlas, blocks=blocks,)
+    return Bunch(multigraph=multigraph, metrics=metrics, atlas=atlas, blocks=blocks,)
