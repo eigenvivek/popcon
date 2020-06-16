@@ -34,7 +34,7 @@ def load_edgelists(graph_path, participants, sample_size, n_vertices, extension)
     graphs = np.zeros(shape=(sample_size, n_vertices, n_vertices))
 
     # Iterate over graphs and store them in `participants`
-    for fl in tqdm(listdir(graph_path), "Loading graphs:"):
+    for fl in tqdm(listdir(graph_path), "Loading graphs"):
 
         if not fl.endswith(extension):
             continue
