@@ -66,5 +66,5 @@ def load_metrics(metrics_path, extension=".csv"):
         holder.append(df)
 
     metrics = pd.concat(holder, axis=0)
-    metrics = metrics.reset_index()
+    metrics = metrics.reset_index(drop=True)
     return metrics
